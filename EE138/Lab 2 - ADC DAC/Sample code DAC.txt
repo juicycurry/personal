@@ -1,0 +1,72 @@
+////////////////////////////////////////////////////////////////////////////////////// 
+////	Lab 2 - Digital To Analog Converter 
+////		-SAMPLE CODE DOES NOT WORK-
+////			- insert variables into appropriate registers
+////			- set up DAC pointer (similar to port_inst setup)
+//////////////////////////////////////////////////////////////////////////////////////
+
+#include <asf.h>
+
+void configure_dac(void);
+void configure_dac_clock(void);
+
+//initialize the DAC pointer
+
+void configure_dac_clock(void)
+{
+	/* Turn on the digital interface clock */
+	system_apb_clock_set_mask(SYSTEM_CLOCK_APB_APBC, PM_APBCMASK_DAC);
+
+	/* Configure GCLK channel and enable clock */
+	struct system_gclk_chan_config gclk_chan_conf;
+	system_gclk_chan_get_config_defaults(&gclk_chan_conf);
+	gclk_chan_conf.source_generator = GCLK_GENERATOR_0;
+	system_gclk_chan_set_config(DAC_GCLK_ID, &gclk_chan_conf);
+	system_gclk_chan_enable(DAC_GCLK_ID);
+}
+
+void configure_dac(void)
+{
+	//set pin as output for the dac
+	Port *ports = PORT_INSTS;
+	PortGroup *por = &(ports->Group[0]);
+	
+	por->PINCFG[/**/].bit.PMUXEN = ;//set to correct pin configuration
+	por->PMUX[/*?*/].bit.PMUXE = ;//set to correct peripheral
+
+
+	while (/*DAC pointer*/STATUS.reg & DAC_STATUS_SYNCBUSY) {
+		/* Wait until the synchronization is complete */
+	}
+
+	/* Set reference voltage with CTRLB */
+
+
+	while (/*DAC pointer*/STATUS.reg & DAC_STATUS_SYNCBUSY) {
+		/* Wait until the synchronization is complete */
+	}
+
+	/* Enable the module with CTRLA */
+
+	/* Enable selected output with CTRLB*/
+
+}
+
+int main(void)
+{
+	system_init();
+	configure_dac_clock();
+	configure_dac();
+	
+	
+	while (1) {
+
+				/* Wait until the synchronization is complete */
+				while (/*DAC pointer*/STATUS.reg & DAC_STATUS_SYNCBUSY) {
+				};
+				
+				/* Write the new value to the DAC DATA register */
+
+	}
+
+}
