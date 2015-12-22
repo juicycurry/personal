@@ -1,0 +1,1 @@
+No points taken off for this part 2 code, however when you are changing the direction and speed of the motor (in task 2), you can simply change your CC[x].reg in your main function. Rather than call and reinitialize your timer counter enable. 

@@ -1,0 +1,460 @@
+/*
+==========================
+EE138 - Lab 1 - Calculator
+==========================
+Spring 2015
+ 
+By: Daniel Graham
+Colin Chen
+*/
+ 
+#include <asf.h>
+ 
+void wait(int t);
+void digit(int position, int displayValue, PortGroup *porA, PortGroup *porB);
+void delete1(void);
+void numbinp(void);
+ 
+//int count = 0;
+//int u0,u1,u2,u3,u4,nullvar,column=0,calcstate=0;
+//int number1val, number2val, operation, newValue;
+//int n0,n1,n2,n3;
+//int previousValue = 99;
+//int keypress = 0, pressed = 0, keycheck, count2=0;
+ 
+ 
+int u0,u1,u2,u3,u4,column=0,calcstate=0;
+int state=0,count1=0;
+int keycheck, count2=0;
+ 
+bool signedValue1 = false;
+bool signedValue2 = false;
+int operation;
+int number1 = 0;
+int number2 = 0;
+int total = 0;
+int digitCounter=5;
+               
+void wait(int t)                                //Wait function: Simple wait function
+{
+        int count = 0;
+        while (count < t)
+        {
+                count++;
+        }
+}
+ 
+void delete1(void){                             //Delete function: Deletes the leftmost digit
+        u3=u2;
+        u2=u1;
+        u1=u0;
+        u0=11;
+        calcstate=1;
+}
+ 
+void numbinp(void){                             //Shift function: Move debounced number into displayed value
+        u0=u1;
+        u1=u2;
+        u2=u3;
+        u3=u4;
+}
+ 
+ 
+void digit(int position, int displayValue, PortGroup *porA, PortGroup *porB){           //Digit function: Scans for input, displays values, and performs mathematic operations
+       
+        //if(!(porA->IN.reg&(PORT_PA16|PORT_PA17|PORT_PA18|PORT_PA19))){
+                //keypress=0;
+        //}
+       
+        switch(position){                                                       //Determine which digit to illuminate based on the passed "position" value
+                case 1:
+                        porA->OUTCLR.reg = PORT_PA07;
+                        column=1;
+                        break;
+               
+                case 2:
+                        porA->OUTCLR.reg = PORT_PA06;
+                        column=2;
+                        break;
+               
+                case 3:
+                        porA->OUTCLR.reg = PORT_PA05;
+                        column=3;
+                        break;
+               
+                case 4:
+                        porA->OUTCLR.reg = PORT_PA04;
+                        column = 4;
+                        break;
+        }
+       
+       
+       
+        if((porA->IN.reg && PORT_PA16)){    //A,B,C,D
+                switch(column){
+                        case 1:
+                                calcstate = 1;                          //Backspace
+                                break;
+                        case 2:
+                                calcstate = 4;                          //Equal
+                                break;
+                        case 3:
+                                calcstate = 5;                          //Negative
+                                break;
+                        case 4:                                
+                                calcstate = 6;                          //Clear
+                                break;
+                }
+        }
+       
+        if((porA->IN.reg & PORT_PA17)){         //3,6,9,#
+               
+                switch(column){
+                        case 1:
+                                u4=3;
+                                calcstate=0;
+                                break;
+                        case 2:
+                                u4=6;
+                                calcstate=0;
+                                break;
+                        case 3:
+                                u4=9;
+                                calcstate=0;
+                                break;
+                        case 4:
+                                calcstate=2;                            //Addition
+                                break;
+                }
+               
+        }
+       
+        if((porA->IN.reg & PORT_PA18)){         //2,5,8,0
+                switch(column){
+                        case 1:
+                                u4=2;
+                                break;
+                        case 2:
+                                u4=5;
+                                break;
+                        case 3:
+                                u4=8;
+                                break;
+                        case 4:
+                                u4=0;
+                                break;
+                }
+                calcstate=0;
+        }
+        if((porA->IN.reg & PORT_PA19)){ //1,4,7,*
+                switch(column){
+                        case 1:
+                                u4=1;
+                                calcstate=0;
+                                break;
+                        case 2:
+                                u4=4;
+                                calcstate=0;
+                                break;
+                        case 3:
+                                u4=7;
+                                calcstate=0;
+                                break;
+                        case 4:                                
+                                calcstate = 3;                  //Subtraction
+                                break;
+                }
+        }
+        if (state==0){                                  //Begin state machine
+                if((porA->IN.reg&(PORT_PA16|PORT_PA17|PORT_PA18|PORT_PA19))){
+                        keycheck=u4;
+                        state=1;
+                        count2=0;
+                        count1=0;
+                }
+        }
+        if((digitCounter>column)){              //Restricts input overflow
+                displayValue=11;
+        }
+       
+       
+        if(signedValue1==true){                 //Toggle signed value if flag set
+                porB->OUTCLR.reg = PORT_PB09;
+        }
+       
+        switch(displayValue){                   //Displays numeric values 0-9, case '11' is blank
+                case 1:
+                        porB->OUTCLR.reg = PORT_PB01|PORT_PB02;
+                        break;
+                case 2:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB01|PORT_PB03|PORT_PB04|PORT_PB06;
+                        break;
+                case 3:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB01|PORT_PB02|PORT_PB03|PORT_PB06;
+                        break;
+                case 4:
+                        porB->OUTCLR.reg = PORT_PB01|PORT_PB02|PORT_PB05|PORT_PB06;
+                        break;
+                case 5:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB02|PORT_PB03|PORT_PB05|PORT_PB06;
+                        break;
+                case 6:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB02|PORT_PB03|PORT_PB04|PORT_PB05|PORT_PB06;
+                        break;
+                case 7:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB01|PORT_PB02;
+                        break;
+                case 8:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB01|PORT_PB02|PORT_PB03|PORT_PB04|PORT_PB05|PORT_PB06;
+                        break;
+                case 9:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB01|PORT_PB02|PORT_PB05|PORT_PB06;
+                        break;
+                case 0:
+                        porB->OUTCLR.reg = PORT_PB00|PORT_PB01|PORT_PB02|PORT_PB03|PORT_PB04|PORT_PB05;
+                        break;
+                case 11:
+                        porB->OUTSET.reg = PORT_PA00|PORT_PB01|PORT_PB02|PORT_PB03|PORT_PB04|PORT_PB05|PORT_PB06|PORT_PB07;
+                        break;
+                //case 12:
+                //porB->OUTSET.reg = PORT_PA00|PORT_PA01|PORT_PB05|PORT_PB06|PORT_PB07;  //U -> G & A & F & B
+                //case 13:
+                //porB->OUTSET.reg = PORT_PA00|PORT_PB01|PORT_PB07;     //P -> A&B
+                //case 14:
+                //porB->OUTSET.reg = PORT_PA00|PORT_PB01|PORT_PB02|PORT_PB06|PORT_PB07; //L -> ABGC
+                //break;
+        }
+       
+        wait(200);
+        if(state==1){
+               
+                if(keycheck==u4){                       //Debounce code
+                        count2++;
+                        if(count2>1000){
+                                state=2;
+                                switch(calcstate){                              //Determine if input was a numerical value or an operation.
+                                        case 0:                                         //Case 0: Number Input
+                                                numbinp();
+                                                if(digitCounter >0){
+                                                        digitCounter--;
+                                                }
+                                                break;
+                                        case 1:                                         //Case 1: Delete Character
+                                                delete1();
+                                                digitCounter++;
+                                                break;
+                                        case 2:                                         //Case 2: Addition
+                                                operation = 1;                  //Store operation state
+                                                if(u0==11){                             //Adjust "blank" digits for conversion to single integer
+                                                        u0=0;
+                                                }
+                                                if(u1==11){
+                                                        u1=0;
+                                                }
+                                                if(u2==11){
+                                                        u2=0;
+                                                }
+                                                if(u3==11){
+                                                        u3=0;
+                                                }
+                                                if(u4==11){
+                                                        u4=0;
+                                                }
+                                                number2 = (u0*1000)+(u1*100)+(u2*10)+(u3);      //Convert digits to single integer, store
+                                                if(signedValue1==true){                                         //Check for signed flag
+                                                        number2 = 0 - number2 ;
+                                                        signedValue2 = true;
+                                                        signedValue1 = false;
+                                                }
+                                       
+                                                for(int i=0; i<4; i++){                                         //Delete displayed value after store for new input
+                                                        delete1();
+                                                }
+                                                break;
+                                        case 3:                                         //Case 3: Subtraction
+                                                operation = 2;                  //Store operation state
+                                                if(u0==11){
+                                                        u0=0;
+                                                }
+                                                if(u1==11){
+                                                        u1=0;
+                                                }
+                                                if(u2==11){
+                                                        u2=0;
+                                                }
+                                                if(u3==11){
+                                                        u3=0;
+                                                }
+                                                if(u4==11){
+                                                        u4=0;
+                                                }
+                                                number2 = (u0*1000)+(u1*100)+(u2*10)+(u3);
+                                                if(signedValue1==true){
+                                                        number2 = 0 - number2;
+                                                        signedValue2 = true;
+                                                        signedValue1 = false;
+                                                }
+                                                for(int i=0; i<4; i++){
+                                                        delete1();
+                                                }
+                                       
+                                                break;
+                                        case 4:                                         //Case 4: Equals
+                                                if(u0==11){
+                                                        u0=0;
+                                                }
+                                                if(u1==11){
+                                                        u1=0;
+                                                }
+                                                if(u2==11){
+                                                        u2=0;
+                                                }
+                                                if(u3==11){
+                                                        u3=0;
+                                                }
+                                                if(u4==11){
+                                                        u4=0;
+                                                }
+                                                number1 = (u0*1000)+(u1*100)+(u2*10)+(u3);      //Convert current displayed digits to integer values
+                                                if(signedValue1==true){                                         //Check for signed flag
+                                                        number1 = 0 - number1;
+                                                }
+                                                switch(operation){                              //Check operation
+                                                        case 1:
+                                                                total = number1+number2;        //Operation 1: Addition
+                                                                break;
+                                                        case 2:
+                                                                total = number2-number1;        //Operation 2: Subtraction
+                                                                break;
+                                                        default:
+                                                                break;
+                                                }
+                                       
+                                                if(total>=0){                           //Check sign for digit sign flag
+                                                        signedValue1= false;
+                                                }
+                                                if(total<0){
+                                                        signedValue1=true;
+                                                        total = 0 - total;
+                                                }
+                                       
+                                                if(total>9999){                         //Bound result
+                                                        digitCounter=1;
+                                                        //total = total-10000;
+                                                        total = 9999;
+                                                }
+                                       
+                                                u0 = total / 1000;                      //Convert integer value back into individual digits
+                                                if(u0!=0){
+                                                        digitCounter = 1;
+                                                }
+                                                u1 = (total -(u0*1000)) /100;
+                                                if(u1!=0 && u0==0){
+                                                        digitCounter = 2;
+                                                }
+                                                u2 = (total - ((u0*1000)+(u1*100)))/10;
+                                                if(u2!=0 && u1==0 && u0 == 0){
+                                                        digitCounter = 3;
+                                                }
+                                                u3 = (total - ((u0*1000)+(u1*100)+(u2*10)));
+                                                if(u3!=0 && u2==0 && u1==0 && u0==0){
+                                                        digitCounter = 4;
+                                                }
+                                                if(u3==0 && u2==0 && u1==0 && u0==0){
+                                                        digitCounter = 4;
+                                                }
+                                                number1=0;                              //Reset stored integer values
+                                                number2=0;
+                                                total=0;
+                                                break;
+                                        case 5:                                         //Case 5: Negative
+                                                switch(signedValue1){   //Toggle signed flag
+                                                        case true:
+                                                        signedValue1 = false;
+                                                        break;
+                                                        case false:
+                                                        signedValue1 = true;
+                                                        break;
+                                                }
+                                                break;
+                                        case 6:                                         //Case 6: Clear
+                                                number1 = 0;                    //Clear out all used values
+                                                number2 = 0;
+                                                total = 0;
+                                                u4 = u3 =u2 = u1 = u0 = 11;
+                                                digitCounter = 4;
+                                                calcstate = 0;
+                                                signedValue1 = false;
+                                                signedValue2 = false;
+                                                break;                                 
+                                }
+                               
+                                count2=0;
+                                count1=0;
+                                if (digitCounter>4){
+                                        digitCounter=4;
+                                }
+                        }
+                }
+               
+                if(!(keycheck==u4)){
+                        state=0;
+                }
+        }
+       
+        if(state==2){           //End of debounce, check for lack of press
+                if(!(porA->IN.reg&(PORT_PA16|PORT_PA17|PORT_PA18|PORT_PA19))){
+                        count2++;
+                        if(count2>1000){
+                                count2=0;
+                                state=0;
+                        }
+                }
+                if((porA->IN.reg&(PORT_PA16|PORT_PA17|PORT_PA18|PORT_PA19))){
+                        count2=0;
+                }
+               
+        }
+       
+        porA->OUTSET.reg = PORT_PA04|PORT_PA05|PORT_PA06|PORT_PA07;             //Reset all used ports
+        porB->OUTSET.reg = PORT_PA00|PORT_PB01|PORT_PB02|PORT_PB03|PORT_PB04|PORT_PB05|PORT_PB06|PORT_PB07|PORT_PB09;
+       
+}
+ 
+ 
+int main (void)
+{
+       
+        system_init();
+       
+        Port *ports = PORT_INSTS;
+       
+        PortGroup *porA = &(ports->Group[0]);
+        PortGroup *porB = &(ports->Group[1]);
+       
+        porA->DIRSET.reg = PORT_PA04|PORT_PA05|PORT_PA06|PORT_PA07; //Transistor outputs, ACTIVE LOW
+       
+        porA->DIRCLR.reg = PORT_PA16|PORT_PA17|PORT_PA18|PORT_PA19; //Keypad Inputs
+       
+        porB->DIRSET.reg = PORT_PB00|PORT_PB01|PORT_PB02|PORT_PB03|PORT_PB04|PORT_PB05|PORT_PB06|PORT_PB07|PORT_PB09; //7 Segment Display Pins, ACTIVE LOW
+       
+        porB->OUTSET.reg = PORT_PB00|PORT_PB01|PORT_PB02|PORT_PB03|PORT_PB04|PORT_PB05|PORT_PB06|PORT_PB07|PORT_PB09; //Reseting Pins to all 0
+        porA->OUTSET.reg = PORT_PA04|PORT_PA05|PORT_PA06|PORT_PA07;
+       
+        for(int i=0; i<7; i++){                 //Toggle drive strength high for LED output
+                porB->PINCFG[i].reg=PORT_PINCFG_DRVSTR;
+        }
+        for(int i=16; i<20; i++){               //Configure keypad as input
+                porA->PINCFG[i].reg=PORT_PINCFG_INEN | PORT_PINCFG_PULLEN;
+        }
+       
+        u4=u3=u2=u1=u0=11;
+        while (1){
+               
+                digit(1,u0,porA,porB); // digit(ROW, # DIGIT, porA,porB) ; ROW is for which ROW and DIGIT is for a numerical value
+                digit(2,u1,porA,porB);
+                digit(3,u2,porA,porB);
+                digit(4,u3,porA,porB);
+               
+        }
+}

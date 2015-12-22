@@ -1,0 +1,69 @@
+////////////////////////////////////////////////////////////////////////////////////// 
+////	Lab 2 - Analog To Digital Converter 
+////		-SAMPLE CODE DOES NOT WORK-
+////			- insert variables into appropriate registers
+////			- set up ADC pointer (similar to port_inst setup)
+//////////////////////////////////////////////////////////////////////////////////////
+
+#include <asf.h>
+
+PortGroup *porta = (PortGroup *)PORT;
+/*	initialize ADC pointer here  	*/		// define a pointer to the ADC block
+
+// set up generic clock for ADC
+void enable_adc_clocks(void)
+{
+	struct system_gclk_chan_config gclk_chan_conf;
+
+	gclk_chan_conf.source_generator = GCLK_GENERATOR_0;
+	system_gclk_chan_set_config(ADC_GCLK_ID , &gclk_chan_conf);
+	
+	//Enable the generic clock for ADC
+	system_gclk_chan_enable(ADC_GCLK_ID );
+}
+
+// initialize the on-board ADC system 
+void init_adc(void)
+{
+	// CTRLA.reg = ;			//ADC block is disabled
+	
+	// you will need to configure 5 registers
+		//refctrl.reg
+		//avgctrl.reg
+		//sampctrl.reg
+		//ctrlb.reg
+		//inputctrl.reg (muxpos, muxneg, gain)
+	
+	// config PA02 to be owned by ADC Peripheral
+	
+		//PMUX[ /*?*/ ].bit.PMUXE = ;		//refer to pg304 data sheet
+		//PINCFG[ /*?*/ ].bit.PMUXEN = ;	//refer to pg304 data sheet
+	
+	// CTRLA.reg = ;			//Enable ADC	
+}
+	
+unsigned int read_adc(void)
+{
+
+	// start the conversion
+		// SWTRIG.reg = ;
+		
+	while(!//INTFLAG.bit.RESRDY);	//wait for conversion to be available
+	
+	return( ); //insert register where ADC store value
+	
+}
+
+int main (void)
+{	
+	system_clock_init();
+	enable_adc_clocks();
+	init_adc();
+		
+	int x;
+	
+	while(1)
+	{
+			x = read_adc();	//store variable from ADC into variable "x"
+	}
+}
