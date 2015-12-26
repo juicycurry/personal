@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>Colin Chen's Resume</title>
+  <link rel="stylesheet" type="text/css" href="resumestyle.css">
+  <style type="text/css"></style>
+
+</head>
+
+<body>
+  <h1>Colin Chen</h1>
+  <h2>(650) 804-8321 <br> <a href="mailto:colin.cchen@gmail.com" target="_top">colin.cchen@gmail.com</a>
+  </h2>
+  <hr>
+  <h3>OBJECTIVE</h3>
+  <p class="p02"> Seeking an Engineering position that will utilize my experience to
+
+help company growth</p>
+
+
+  <h3 style="margin-top:5px">EDUCATION</h3>
+
+  
+  <p class="p02"> <b style="font-size:13px">B.S. Electrical Engineering </b>- GPA: 3.4/4.0</p>
+
+  
+  
+  
+
+  <p class="p01">Spring 2016</p>
+  <p class="p02">San Jose State University</p>
+  
+  
+  
+
+   <p class="p05" style="display:inline-block; margin-top:0px"><b style="font-size:12px">Skills:</b> Programming, Digital Design, Technical Communication, Circuit Analysis, Team/Project Management<br> Programming Languages: C, C++, Verilog HDL,Javascript, Html, CSS, <br> PCB Design/Electrical design Software: EagleCad, Diptrace, E3s<br> Embedded Programming: Experience with the SAMD20, Arduino, MSP430, ESP8266 <br> Tools: Oscilloscopes, Logic Analyzers, Multimeters, LTspice</p>
+   <br>
+  
+  <p class="p05" style="display:inline-block; margin-top:0px"><b style="font-size:12px">Relevant Coursework:</b> Circuits and Systems, Signal Processing, Digital Logic Circuit Design, Microprocessor-Based System Design, Electronic Design, Principles of Electromagnetic Fields, Theory of Automatic Controls, Embedded Control System Design, Physical Electronics</p>
+
+  <h3>RELEVANT PROJECTS/WORK EXPERIENCE</h3>
+  <p class="p01">Oct 2014 - June 2015</p>
+  <p class="p03"><b>Nasa RASC-AL Robo Ops Competition</b></p>
+  
+  <p class="p06">
+    - Proposed the initial competition design with 3 other engineering students, resulting in SJSU Robotics being chosen as one of the 8 competing participants, out of over 40 applicants, receiving a $10,000 grant from NASA to construct an operational rover
+    <br>
+  	- Planned and executed the construction of the communication spine, power harness, and overall electrical structure for the competition rover
+	<br>
+  - Tied with MIT in Rover competition despite being a first year competition team and recieved most innovative feature award from judging staff
+  <br>
+	- Lead a team of 5 engineers in designing and constructing all electrical based systems on the rover
+  <br>
+
+  </p>
+
+    <p class="p01">Summer 2015</p>
+  <p class="p03"><b>Solar Cell Supplied Wireless Sensor Node & LED Lighting for Agricultural Application</b></p>
+  
+  <p class="p06">
+    - Design project for the Industrial Academic Leadership Experience Program program at Chung Yuan Christian University
+    <br>
+    - Designed and fabricated custom PCB in a rapid prototype environment to support two separate projects
+    <br>
+  - Programmed Arduino and ESP8266 to manage a sensor node and an LED management system accessible via a web interface
+  <br>
+  - Worked as a critical member in a team of 6 to complete two full systems in a short period of 3 weeks
+  <br>
+  - Placed 1st in a technical presentation competition out of 16 teams
+  </p>
+  
+
+  <p class="p01">Feb 2015 - March 2015</p>
+  <p class="p03"><b>Motor Speed and Position PID Controller</b></p>
+  
+  <p class="p06">
+    - Programmed a motor controller on the SAMD20J18 microcontroller, with error detection, rpm detection, and accurate speed/position orientation, controllable by a human user
+    <br>
+  - Incorporated control system and digital signal processing theory learned in class, reducing the amount of hardware components needed for the project by integrating the needed features through software
+  <br>
+  - Worked in a team of 2 to complete a complex, software driven, embedded system
+
+  </p>
+
+  <p class="p01">Jan 2014 - Present</p>
+  <p class="p03"><b>Lab Assistant,</b> SJSU Engineering 10 - Lab</p>
+  
+  <p class="p06">- Assisted college students with their transition into engineering while motivating students to properly learn programming and CAD software
+  <br>- Debugged and fixed technical issues, circuitry failures and bugs in classroom equipment
+  <br>
+  - Designed a PCB for the IR Board for the E10 lab
+  </p>
+
+
+
+ <!--<p class="p03"><b>Past Projects</b></p>
+  <p class="p06">
+  Calculator with software debounced keys, Luminous Hexahedron (Music LED Cube), SJSU LED Display using TTL logic, Interactive Clock, EEPROM Test Circuit with USB IO, Dual Tone Generator in Matlab, Capacitive Hand Sensor, Opamp based Hindmarsh Rose Neural Model
+  </p> -->
+
+<h3>ACTIVITIES/AWARDS</h3>
+<p class="p01"> Fall 2013 - present</p>
+<p class="p03"><b>Electrical Engineering Lead, </b>SJSU Robotics Club</p>
+  <p class="p07">
+  - Design and conduct the construction and integration of all electrical components for all SJSU Robotics Competition related projects
+  <br>
+  - Organize members during build phase to explore and experience the engineering process while meeting production deadlines
+  <br>
+  - Serve as a resource for club members by organizing events and offering circuitry and programming advice
+  <br>
+	- Lead the electrical team in competition based projects
+</p>
+
+<p class="p01">Summer of 2015</p>
+<p class="p03"><b>Global Technology Initiative Program Taiwan (GTI),</b> Charles W. Davidson College of Engineering</p>
+
+<p class="p01">Spring 2014 - Present</p>
+<p class="p03"><b>Tau Beta Pi,</b> Engineering Honor Society</p>
+
+<p class="p01">2005-2012</p>
+<p class="p03"><b>Eagle Scout,</b> Assistant Senior Patrol Leader of Palo Alto's Troop 14, Boy Scouts of America</p>
+<p class="p07">
+
+- Served in a leading role in a troop of over 80 active members for multiple years
+<br>
+- Organized troop events and meetings in an efficient manner, resulting in one of the best years in terms of overall attendance to troop outings and activities
+
+
+</p>
+
+<p class="p01">Summer 2011</p>
+<p class="p03"><b>Volunteer,</b> Stanford Hospital</p>
+<p class="p07">
+- Assisted patients post neurosurgery serving as a caretaker and translator for patients
+<br>
+- Aided in communication between doctors, nurses, and patients, allowing for better quality of life for patients
+
+</p>
+
+</body>
+
+
+</html>

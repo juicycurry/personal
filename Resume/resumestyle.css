@@ -1,0 +1,95 @@
+body {
+	background-color:white;
+}
+h1{
+	color:black;
+	font-family: Tahoma;
+	text-align: left;
+	background-color:white;
+	font-size: 18px;
+	margin: 1px;
+}
+
+h2{
+	color:#383838;
+	font-family:Tahoma;
+	text-align:left;
+	margin-bottom: 1px;
+	margin-top: 1px;
+	font-size:12px;
+}
+
+h3{
+	color:black;
+	font-family: Cambria,Georgia,serif;
+	margin:1px;
+	font-size: 15px;
+
+}
+
+.p04{
+	color:black;
+	font-family:Cambria,Georgia,serif;
+
+	font-size: 13px;
+}
+
+.p01{
+
+	font-size: 12px;
+	color:#707070;
+	float:right;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.p02{
+
+	font-size: 12px;
+	text-align: left;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.p05{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 20px;
+	font-size: 12px;
+	text-align: left;
+}
+
+.p06{
+	margin-top: 1px;
+	font-size: 12px;
+	text-align: left;
+	margin-left: 30px;	
+	margin-bottom: 5px;
+
+}
+
+.p07{
+	margin-top: 0px;
+	margin-bottom: 0;
+	font-size: 12px;
+	text-align: left;
+	margin-left: 30px;	
+}
+
+.p03{
+	font-size: 12px;
+	text-align: left;
+	margin-left: 20px;
+	margin-top: 0;
+	margin-bottom: 0;
+
+}
+
+.revproj{
+	margin-left: 20px;
+
+}
+
+.brmedium{
+	margin:50px;
+}
