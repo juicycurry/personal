@@ -4,7 +4,7 @@ body {
 h1{
 	color:black;
 	font-family: Tahoma;
-	text-align: left;
+	text-align: center;
 	background-color:white;
 	font-size: 18px;
 	margin: 1px;
@@ -13,8 +13,8 @@ h1{
 h2{
 	color:#383838;
 	font-family:Tahoma;
-	text-align:left;
-	margin-bottom: 1px;
+	text-align:center;
+	margin-bottom: 13px;
 	margin-top: 1px;
 	font-size:12px;
 }
@@ -22,8 +22,15 @@ h2{
 h3{
 	color:black;
 	font-family: Cambria,Georgia,serif;
-	margin:1px;
+	margin-top:15px;
+	margin-bottom: 15px;
 	font-size: 15px;
+	text-align:center;
+	float:center;
+	width: 99%;
+	border: 3px;
+    border-style: solid;
+    border-color: #00141a;
 
 }
 
@@ -82,7 +89,13 @@ h3{
 	margin-left: 20px;
 	margin-top: 0;
 	margin-bottom: 0;
+	text-decoration: none;
 
+}
+
+.projtext{
+	text-decoration: none;
+	color: #004d99;	
 }
 
 .revproj{
