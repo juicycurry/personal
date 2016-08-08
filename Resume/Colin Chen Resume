@@ -30,7 +30,7 @@ help company growth</p>
    <p class="p05" style="display:inline-block; margin-top:0px"><b style="font-size:12px">Skills:</b> Digital Design, Power Design, Technical Communication, Circuit Analysis, Project & Team Management<br>Programming Languages: C, C++ <br> PCB Design/Circuit design Software: EagleCad, Diptrace, E3s<br> Tools: Oscilloscopes, Logic Analyzers, Multimeters, LTspice</p>
    <br>
 
-  <h3>RELEVANT PROJECTS/WORK EXPERIENCE</h3>
+  <h3>PROJECTS/WORK EXPERIENCE</h3>
   <p class="p01">Summer 2016</p>
   <p class="p03"><b>Software Engineering Internship - Cisco Systems</b></p>
   <p class="p06">
@@ -38,9 +38,9 @@ help company growth</p>
   <br>
   - Created validation schema for JSON Objects for the new incoming data transfer architecture
   <br>
-  - Helped fascilitate the redesign and refactoring of BIOS Tokens.
+  - Helped fascilitate the redesign and refactoring of Cisco BIOS Tokens.
   <br>
-  - Programmed parts of the BIOS Token XML parser API to allow for backwards product compatibility
+  - Programmed the BIOS Token XML parser API to allow for backwards product compatibility
   </p> 
 
   <p class="p01">Nov 2015 - June 2016</p>
@@ -102,6 +102,9 @@ help company growth</p>
   <br>
   - Designed a PCB for the IR Board for the E10 lab
   -->
+  <br>
+ <p class="p05" style="display:inline-block; margin-top:0px"><b style="font-size:12px">Relevant Coursework:</b> Circuits and Systems, Signal Processing, Digital Logic Circuit Design, Microprocessor-Based System Design, Electronic Design, Principles of Electromagnetic Fields, Theory of Automatic Controls, Embedded Control System Design, Physical Electronics, Power Electronics, CMOS Digital Circuits, Digital Design w/ FPGAs</p>
+
   </p>
 
 
@@ -128,8 +131,8 @@ help company growth</p>
 <p class="p01">Summer 2011</p>
 <p class="p03"><b>Neurosurgery Volunteer Caretaker,</b> Stanford Hospital</p>
 
-<h3>SKILLS</h3>
- <p class="p05" style="display:inline-block; margin-top:0px"><b style="font-size:12px">Relevant Coursework:</b> Circuits and Systems, Signal Processing, Digital Logic Circuit Design, Microprocessor-Based System Design, Electronic Design, Principles of Electromagnetic Fields, Theory of Automatic Controls, Embedded Control System Design, Physical Electronics, Power Electronics, CMOS Digital Circuits, Digital Design w/ FPGAs</p>
+
+
 </body>
 
 
